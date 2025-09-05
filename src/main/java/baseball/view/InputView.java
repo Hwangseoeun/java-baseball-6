@@ -8,6 +8,7 @@ import java.util.List;
 
 public class InputView {
     public Numbers inputGuessedNumber() {
+        System.out.print("숫자를 입력해주세요 : ");
         final String guessedNumber = Console.readLine();
 
         return splitNumber(guessedNumber);
