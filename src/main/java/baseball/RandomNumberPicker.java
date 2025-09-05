@@ -1,5 +1,6 @@
 package baseball;
 
+import baseball.model.Numbers;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
@@ -9,14 +10,16 @@ import java.util.Set;
 
 public class RandomNumberPicker {
 
-    public static List<Integer> answerDigits() {
+    public static Numbers answerDigits() {
         Set<Integer> answerDigits = new HashSet<>();
 
         while (answerDigits.size() < 3) {
             answerDigits.add(pickRandomNumber());
         }
 
-        return new ArrayList<>(answerDigits);
+        final List<Integer> numbers = new ArrayList<>(answerDigits);
+
+        return new Numbers(numbers);
     }
 
     private static int pickRandomNumber() {

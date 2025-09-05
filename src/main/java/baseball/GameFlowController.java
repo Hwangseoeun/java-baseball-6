@@ -1,8 +1,7 @@
 package baseball;
 
+import baseball.model.Numbers;
 import baseball.view.InputView;
-
-import java.util.List;
 
 public class GameFlowController {
 
@@ -13,6 +12,7 @@ public class GameFlowController {
     }
 
     public void gameFlow() {
-        final List<Integer> answerDigits = RandomNumberPicker.answerDigits();
+        final Numbers answerDigits = RandomNumberPicker.answerDigits();
+        final Numbers guessedNumberDigits = inputView.inputGuessedNumber();
     }
 }
