@@ -3,8 +3,6 @@ package baseball;
 import baseball.model.Numbers;
 import baseball.view.InputView;
 
-import java.util.Arrays;
-
 import static baseball.model.Numbers.isGuessedNumberMatchAnswer;
 import static baseball.view.OutputView.outputJudgeResult;
 
@@ -20,7 +18,7 @@ public class GameFlowController {
         System.out.println("숫자 야구 게임을 시작합니다.");
 
         final Numbers answerDigits = RandomNumberPicker.answerDigits();
-        System.out.println(Arrays.toString(answerDigits.getNumberDigits().toArray()));
+
         boolean isGameContinue = true;
 
         while (isGameContinue) {
