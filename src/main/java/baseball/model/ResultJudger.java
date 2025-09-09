@@ -4,9 +4,13 @@ import java.util.List;
 
 public class ResultJudger {
 
-    public static String judgeBallResult(List<Integer> answerDigits, List<Integer> guessedNumberDigits) {
-        final long ballCount = guessedNumberDigits.stream()
-            .filter(number -> answerDigits.contains(number) && answerDigits.indexOf(number) != guessedNumberDigits.indexOf(number))
+    public static String judgeBallResult(Numbers answerDigits, Numbers guessedNumberDigits) {
+
+        final List<Integer> answer = answerDigits.getNumberDigits();
+        final List<Integer> guessedNumber = guessedNumberDigits.getNumberDigits();
+
+        final long ballCount = guessedNumber.stream()
+            .filter(number -> answer.contains(number) && answer.indexOf(number) != guessedNumber.indexOf(number))
             .count();
 
         if(ballCount == 0) {
@@ -16,9 +20,13 @@ public class ResultJudger {
         return ballCount + ResultType.BALL.getMessage() + " ";
     }
 
-    public static String judgeStrikeResult(List<Integer> answerDigits, List<Integer> guessedNumberDigits) {
-        final long strikeCount = guessedNumberDigits.stream()
-            .filter(number -> answerDigits.contains(number) && answerDigits.indexOf(number) == guessedNumberDigits.indexOf(number))
+    public static String judgeStrikeResult(Numbers answerDigits, Numbers guessedNumberDigits) {
+
+        final List<Integer> answer = answerDigits.getNumberDigits();
+        final List<Integer> guessedNumber = guessedNumberDigits.getNumberDigits();
+
+        final long strikeCount = guessedNumber.stream()
+            .filter(number -> answer.contains(number) && answer.indexOf(number) == guessedNumber.indexOf(number))
             .count();
 
         if(strikeCount == 0) {
@@ -28,9 +36,13 @@ public class ResultJudger {
         return strikeCount + ResultType.STRIKE.getMessage() + " ";
     }
 
-    public static String judgeNothingResult(List<Integer> answerDigits, List<Integer> guessedNumberDigits) {
-        final long strikeCount = guessedNumberDigits.stream()
-            .filter(answerDigits::contains)
+    public static String judgeNothingResult(Numbers answerDigits, Numbers guessedNumberDigits) {
+
+        final List<Integer> answer = answerDigits.getNumberDigits();
+        final List<Integer> guessedNumber = guessedNumberDigits.getNumberDigits();
+
+        final long strikeCount = guessedNumber.stream()
+            .filter(answer::contains)
             .count();
 
         if(strikeCount != 0) {
