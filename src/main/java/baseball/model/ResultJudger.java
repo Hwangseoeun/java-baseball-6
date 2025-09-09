@@ -13,7 +13,7 @@ public class ResultJudger {
             return "";
         }
 
-        return ballCount + "볼 ";
+        return ballCount + ResultType.BALL.getMessage() + " ";
     }
 
     public static String judgeStrikeResult(List<Integer> answerDigits, List<Integer> guessedNumberDigits) {
@@ -25,7 +25,7 @@ public class ResultJudger {
             return "";
         }
 
-        return strikeCount + "스트라이크 ";
+        return strikeCount + ResultType.STRIKE.getMessage() + " ";
     }
 
     public static String judgeNothingResult(List<Integer> answerDigits, List<Integer> guessedNumberDigits) {
@@ -37,6 +37,6 @@ public class ResultJudger {
             return "";
         }
 
-        return "낫싱";
+        return ResultType.NOTHING.getMessage();
     }
 }
