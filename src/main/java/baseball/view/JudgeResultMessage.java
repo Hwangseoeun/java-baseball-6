@@ -1,4 +1,4 @@
-package baseball.model;
+package baseball.view;
 
 public enum JudgeResultMessage {
     BALL("볼"),

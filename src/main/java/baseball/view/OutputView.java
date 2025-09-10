@@ -1,7 +1,6 @@
 package baseball.view;
 
 import baseball.dto.JudgeResultCountDto;
-import baseball.model.JudgeResultMessage;
 
 public class OutputView {
 
