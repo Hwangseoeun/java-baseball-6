@@ -1,17 +1,18 @@
 package baseball;
 
+import baseball.dto.JudgeResultCountDto;
 import baseball.model.Numbers;
 import baseball.view.InputView;
-
-import static baseball.model.Numbers.isGuessedNumberMatchAnswer;
-import static baseball.view.OutputView.outputJudgeResult;
+import baseball.view.OutputView;
 
 public class GameFlowController {
 
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public GameFlowController(InputView inputView) {
+    public GameFlowController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void gameFlow() {
@@ -24,9 +25,11 @@ public class GameFlowController {
         while (isGameContinue) {
             final Numbers guessedNumberDigits = inputView.inputGuessedNumber();
 
-            isGameContinue = !isGuessedNumberMatchAnswer(answerDigits, guessedNumberDigits);
+            isGameContinue = !Numbers.isGuessedNumberMatchAnswer(answerDigits, guessedNumberDigits);
 
-            outputJudgeResult(answerDigits, guessedNumberDigits);
+            final JudgeResultCountDto judgeResultCount = answerDigits.judgeResultCount(guessedNumberDigits);
+
+            outputView.outputJudgeResult(judgeResultCount);
         }
 
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");

@@ -1,19 +1,24 @@
 package baseball.view;
 
-import baseball.model.Numbers;
-
-import static baseball.model.ResultJudger.judgeBallResult;
-import static baseball.model.ResultJudger.judgeNothingResult;
-import static baseball.model.ResultJudger.judgeStrikeResult;
+import baseball.dto.JudgeResultCountDto;
+import baseball.model.JudgeResultMessage;
 
 public class OutputView {
 
-    public static void outputJudgeResult(Numbers answerDigits, Numbers guessedNumberDigits) {
+    public void outputJudgeResult(JudgeResultCountDto judgeResultCount) {
 
-        String ballResult = judgeBallResult(answerDigits, guessedNumberDigits);
-        String strikeResult = judgeStrikeResult(answerDigits, guessedNumberDigits);
-        String nothingResult = judgeNothingResult(answerDigits, guessedNumberDigits);
+        if(judgeResultCount.ballCount() == 0 && judgeResultCount.strikeCount() == 0) {
+            System.out.print(JudgeResultMessage.NOTHING.getMessage());
+        }
 
-        System.out.println(ballResult + strikeResult + nothingResult);
+        if(judgeResultCount.ballCount() > 0) {
+            System.out.print(judgeResultCount.ballCount() + JudgeResultMessage.BALL.getMessage() + " ");
+        }
+
+        if(judgeResultCount.strikeCount() > 0) {
+            System.out.print(judgeResultCount.strikeCount() + JudgeResultMessage.STRIKE.getMessage() + " ");
+        }
+
+        System.out.println();
     }
 }

@@ -1,6 +1,7 @@
 package baseball;
 
 import baseball.view.InputView;
+import baseball.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
@@ -9,7 +10,9 @@ public class Application {
 
         while (gameRestartResult == 1) {
             final InputView input = new InputView();
-            GameFlowController gameFlowController = new GameFlowController(input);
+            final OutputView output = new OutputView();
+
+            GameFlowController gameFlowController = new GameFlowController(input, output);
 
             gameFlowController.gameFlow();
 

@@ -1,5 +1,7 @@
 package baseball.model;
 
+import baseball.dto.JudgeResultCountDto;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -45,5 +47,24 @@ public class Numbers {
         final List<Integer> guessedNumber = guessedNumberDigits.getNumberDigits();
 
         return answer.equals(guessedNumber);
+    }
+
+    public JudgeResultCountDto judgeResultCount(final Numbers guessedNumberDigits) {
+
+        final List<Integer> answer = this.getNumberDigits();
+        final List<Integer> guessedNumber = guessedNumberDigits.getNumberDigits();
+
+        final long ballCount = guessedNumber.stream()
+            .filter(number -> answer.contains(number) && answer.indexOf(number) != guessedNumber.indexOf(number))
+            .count();
+
+        final long strikeCount = guessedNumber.stream()
+            .filter(number -> answer.contains(number) && answer.indexOf(number) == guessedNumber.indexOf(number))
+            .count();
+
+        return new JudgeResultCountDto(
+            ballCount,
+            strikeCount
+        );
     }
 }
