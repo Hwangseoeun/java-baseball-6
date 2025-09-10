@@ -1,5 +1,6 @@
-package baseball;
+package baseball.controller;
 
+import baseball.model.RandomNumberPicker;
 import baseball.dto.JudgeResultCountDto;
 import baseball.model.Numbers;
 import baseball.view.InputView;
