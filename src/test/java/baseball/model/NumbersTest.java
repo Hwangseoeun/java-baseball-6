@@ -1,5 +1,6 @@
 package baseball.model;
 
+import baseball.dto.JudgeResultCountDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -86,5 +87,27 @@ class NumbersTest {
         assertThatThrownBy(() -> createNumbers(numberDigits))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("잘못된 값입니다.");
+    }
+
+    @DisplayName("두 값을 비교하여 볼, 스트라이크 개수를 반환한다.")
+    @Test
+    void returnBallCountAndTypeWhenNumbersCompare() {
+        //Given
+        final List<Integer> answerDigits = List.of(1, 2, 3);
+        final List<Integer> guessedNumberDigits = List.of(1, 3, 2);
+
+        final Numbers answer = createNumbers(answerDigits);
+        final Numbers guessedNumber = createNumbers(guessedNumberDigits);
+
+        final JudgeResultCountDto dto = new JudgeResultCountDto(
+            2,
+            1
+        );
+
+        //When
+        final JudgeResultCountDto judge = answer.judgeResultCount(guessedNumber);
+
+        //Then
+        assertThat(judge).isEqualTo(dto);
     }
 }
