@@ -31,6 +31,30 @@ class NumbersTest {
         .doesNotThrowAnyException();
     }
 
+    @DisplayName("생성자 입력값에 숫자가 3개 초과로 들어오면 예외가 발생한다.")
+    @Test
+    void throwExceptionWhenNumberDigitsSizeIsOver() {
+        //Given
+        final List<Integer> numberDigits = List.of(1, 2, 3, 4);
+
+        //When & Then
+        assertThatThrownBy(() -> createNumbers(numberDigits))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("잘못된 값입니다.");
+    }
+
+    @DisplayName("생성자 입력값으로 들어온 숫자가 1~9 이내가 아니면 예외가 발생한다.")
+    @Test
+    void throwExceptionWhenNumberDigitsRangeIsOver() {
+        //Given
+        final List<Integer> numberDigits = List.of(0, 10, 11);
+
+        //When & Then
+        assertThatThrownBy(() -> createNumbers(numberDigits))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("잘못된 값입니다.");
+    }
+
     @DisplayName("두 값이 일치하면 true를 반환한다.")
     @Test
     void returnTrueWhenNumbersIsMatch() {
@@ -63,30 +87,6 @@ class NumbersTest {
 
         // Then
         assertThat(match).isFalse();
-    }
-
-    @DisplayName("생성자 입력값에 숫자가 3개 초과로 들어오면 예외가 발생한다.")
-    @Test
-    void throwExceptionWhenNumberDigitsSizeIsOver() {
-        //Given
-        final List<Integer> numberDigits = List.of(1, 2, 3, 4);
-
-        //When & Then
-        assertThatThrownBy(() -> createNumbers(numberDigits))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("잘못된 값입니다.");
-    }
-
-    @DisplayName("생성자 입력값으로 들어온 숫자가 1~9 이내가 아니면 예외가 발생한다.")
-    @Test
-    void throwExceptionWhenNumberDigitsRangeIsOver() {
-        //Given
-        final List<Integer> numberDigits = List.of(0, 10, 11);
-
-        //When & Then
-        assertThatThrownBy(() -> createNumbers(numberDigits))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("잘못된 값입니다.");
     }
 
     @DisplayName("두 값을 비교하여 볼, 스트라이크 개수를 반환한다.")
